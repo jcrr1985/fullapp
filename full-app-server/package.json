@@ -1,0 +1,17 @@
+{
+  "name": "my-project",
+  "version": "1.0.0",
+  "description": "My project description",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "author": "Tu Nombre",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mongoose": "^6.1.0",
+    "cors": "^2.8.5",
+    "multer": "^1.4.4"
+  }
+}
