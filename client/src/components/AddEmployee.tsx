@@ -50,10 +50,13 @@ export const AddEmployee = ({ fetchEmployees }: AddEmployeeProps) => {
       formData.append("phone", data.phone);
       formData.append("address", data.address);
 
-      const response = await fetch("http://localhost:3001/employees", {
-        method: "POST",
-        body: formData,
-      });
+      const response = await fetch(
+        "https://full-app-server.onrender.com/employees",
+        {
+          method: "POST",
+          body: formData,
+        }
+      );
 
       if (response.ok) {
         const createdEmployee = await response.json();

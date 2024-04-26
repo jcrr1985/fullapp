@@ -23,7 +23,9 @@ export const EmployeesList = () => {
 
   const fetchEmployees = async () => {
     try {
-      const response = await axios.get("http://localhost:3001/employees");
+      const response = await axios.get(
+        "https://full-app-server.onrender.com/employees"
+      );
       console.log("response", response);
       const employeesFetched: FormValues[] = response.data;
       setEmployees(employeesFetched);
@@ -43,7 +45,9 @@ export const EmployeesList = () => {
 
   const deleteEmployee = async (id: string) => {
     try {
-      await axios.delete(`http://localhost:3001/employees/${id}`);
+      await axios.delete(
+        `https://full-app-server.onrender.com/employees/${id}`
+      );
       fetchEmployees();
     } catch (error) {
       console.error("Error deleting employee:", error);
@@ -67,7 +71,7 @@ export const EmployeesList = () => {
             ></div>
             <img
               className="thumbnail w-full object-cover object-center"
-              src={`http://localhost:3001/uploads/${employee.imageFilename}`}
+              src={`https://full-app-server.onrender.com/uploads/${employee.imageFilename}`}
               alt=""
             />
             <h4 className="text-gray-900 font-bold text-2xl my-4">

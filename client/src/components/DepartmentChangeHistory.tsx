@@ -17,7 +17,7 @@ export const DepartmentChangeHistory = ({
     const fetchDepartmentHistory = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:3001/employees/${selectedEmployee._id}/department-history`
+          `https://full-app-server.onrender.com/employees/${selectedEmployee._id}/department-history`
         );
         const departmentHistoryData = response.data;
         setDepartmentHistory(departmentHistoryData);

@@ -49,7 +49,7 @@ export const EmployeeDetail = () => {
       if (selectedEmployee) {
         const updatedEmployee = { ...selectedEmployee, [property]: value };
         const response = await axios.put(
-          `http://localhost:3001/employees/${selectedEmployee._id}`,
+          `https://full-app-server.onrender.com/employees/${selectedEmployee._id}`,
           updatedEmployee
         );
         if (response.status === 200) {
@@ -72,7 +72,7 @@ export const EmployeeDetail = () => {
           <div className="medium-img-div">
             <img
               className="medium-img"
-              src={`http://localhost:3001/uploads/${selectedEmployee.imageFilename}`}
+              src={`https://full-app-server.onrender.com/uploads/${selectedEmployee.imageFilename}`}
               alt=""
             />
             <p
