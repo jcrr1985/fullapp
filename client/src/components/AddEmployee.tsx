@@ -72,145 +72,142 @@ export const AddEmployee = ({ fetchEmployees }: AddEmployeeProps) => {
   };
 
   return (
-    <>
-      <fieldset
-        style={{
-          border: "1px solid #c8bce9",
-          borderRadius: "5px",
-          padding: "10px",
-        }}
-      >
-        <legend>Add New Employee</legend>
-        <form
-          style={{ display: "flex", alignItems: "center" }}
-          onSubmit={handleSubmit(onSubmit)}
-          noValidate
+    <div className="max-w-2xl mx-auto p-6 bg-white shadow-lg rounded-lg">
+      <h2 className="text-2xl font-semibold text-gray-800 mb-4">
+        Add New Employee
+      </h2>
+      <form onSubmit={handleSubmit(onSubmit)} className="space-y-4" noValidate>
+        <div>
+          <input
+            placeholder="First Name"
+            className="block w-full px-4 py-2 text-gray-700 bg-white border rounded-md focus:border-blue-500 focus:ring-blue-500 focus:outline-none focus:ring focus:ring-opacity-40"
+            type="text"
+            id="firstName"
+            {...register("firstName", {
+              validate: (value) => {
+                if (!value) {
+                  return "First Name is required";
+                }
+                if (!/^[A-Za-z\s]+$/i.test(value)) {
+                  return "Only letters and spaces allowed";
+                }
+                return true;
+              },
+            })}
+          />
+          <p>{errors.firstName && errors.firstName.message}</p>
+        </div>
+
+        <div>
+          <input
+            placeholder="Second Name"
+            className="block w-full px-4 py-2 text-gray-700 bg-white border rounded-md focus:border-blue-500 focus:ring-blue-500 focus:outline-none focus:ring focus:ring-opacity-40"
+            type="text"
+            id="lastName"
+            {...register("lastName", {
+              validate: (value) => {
+                if (!value) {
+                  return "Last Name is required";
+                }
+                if (!/^[A-Za-z\s]+$/i.test(value)) {
+                  return "Only letters and spaces allowed";
+                }
+                return true;
+              },
+            })}
+          />
+          <p>{errors.lastName && errors.lastName.message}</p>
+        </div>
+
+        <div>
+          <input
+            placeholder="yyyy-mm-dd"
+            className="block w-full px-4 py-2 text-gray-700 bg-white border rounded-md focus:border-blue-500 focus:ring-blue-500 focus:outline-none focus:ring focus:ring-opacity-40"
+            type="text"
+            id="hireDate"
+            {...register("hireDate", {
+              required: "Hire Date is required",
+              pattern: {
+                value: /^\d{4}-\d{2}-\d{2}$/,
+                message: 'Date must be in the format "YYYY-mm-dd"',
+              },
+            })}
+          />
+          <p>{errors.hireDate && errors.hireDate.message}</p>
+        </div>
+
+        <div>
+          <input
+            placeholder="Department"
+            className="block w-full px-4 py-2 text-gray-700 bg-white border rounded-md focus:border-blue-500 focus:ring-blue-500 focus:outline-none focus:ring focus:ring-opacity-40"
+            type="text"
+            id="department"
+            {...register("department", {
+              validate: (value) => {
+                if (!value) {
+                  return "Department is required";
+                }
+                return true;
+              },
+            })}
+          />
+          <p>
+            <span className="text-red-600">
+              {errors.department && errors.department.message}
+            </span>
+          </p>
+        </div>
+
+        <div>
+          <input
+            placeholder="Phone"
+            className="block w-full px-4 py-2 text-gray-700 bg-white border rounded-md focus:border-blue-500 focus:ring-blue-500 focus:outline-none focus:ring focus:ring-opacity-40"
+            type="text"
+            id="phone"
+            {...register("phone", {
+              validate: (value) => {
+                if (!value) {
+                  return "Last Name is required";
+                }
+                if (!/^\d+$/.test(value)) {
+                  return "Only numbers allowed";
+                }
+                return true;
+              },
+            })}
+          />
+          <p>{errors.phone && errors.phone.message}</p>
+        </div>
+
+        <div>
+          <input
+            placeholder="Address"
+            className="block w-full px-4 py-2 text-gray-700 bg-white border rounded-md focus:border-blue-500 focus:ring-blue-500 focus:outline-none focus:ring focus:ring-opacity-40"
+            type="text"
+            id="address"
+            {...register("address", {
+              required: true,
+              minLength: 2,
+            })}
+          />
+          <p>{errors.address && errors.address.message}</p>
+        </div>
+
+        <div>
+          <input
+            className="block w-full px-4 py-2 text-gray-700 bg-white border rounded-md focus:border-blue-500 focus:ring-blue-500 focus:outline-none focus:ring focus:ring-opacity-40"
+            type="file"
+            id="image"
+            onChange={handleImageChange}
+          />
+        </div>
+        <button
+          type="submit"
+          className="px-6 py-2 mt-4 text-white bg-blue-600 rounded-lg hover:bg-blue-900"
         >
-          <div className="form-wrapper">
-            <div className="addEmployee-input">
-              <input
-                placeholder="First Name"
-                className="form-input"
-                type="text"
-                id="firstName"
-                {...register("firstName", {
-                  validate: (value) => {
-                    if (!value) {
-                      return "First Name is required";
-                    }
-                    if (!/^[A-Za-z\s]+$/i.test(value)) {
-                      return "Only letters and spaces allowed";
-                    }
-                    return true;
-                  },
-                })}
-              />
-              <p>{errors.firstName && errors.firstName.message}</p>
-            </div>
-
-            <div className="addEmployee-input">
-              <input
-                placeholder="Second Name"
-                className="form-input"
-                type="text"
-                id="lastName"
-                {...register("lastName", {
-                  validate: (value) => {
-                    if (!value) {
-                      return "Last Name is required";
-                    }
-                    if (!/^[A-Za-z\s]+$/i.test(value)) {
-                      return "Only letters and spaces allowed";
-                    }
-                    return true;
-                  },
-                })}
-              />
-              <p>{errors.lastName && errors.lastName.message}</p>
-            </div>
-
-            <div className="addEmployee-input">
-              <input
-                placeholder="yyyy-mm-dd"
-                className="form-input"
-                type="text"
-                id="hireDate"
-                {...register("hireDate", {
-                  required: "Hire Date is required",
-                  pattern: {
-                    value: /^\d{4}-\d{2}-\d{2}$/,
-                    message: 'Date must be in the format "YYYY-mm-dd"',
-                  },
-                })}
-              />
-              <p>{errors.hireDate && errors.hireDate.message}</p>
-            </div>
-
-            <div className="addEmployee-input">
-              <input
-                placeholder="Department"
-                className="form-input"
-                type="text"
-                id="department"
-                {...register("department", {
-                  validate: (value) => {
-                    if (!value) {
-                      return "Department is required";
-                    }
-                    return true;
-                  },
-                })}
-              />
-              <p>{errors.department && errors.department.message}</p>
-            </div>
-
-            <div className="addEmployee-input">
-              <input
-                placeholder="Phone"
-                className="form-input"
-                type="text"
-                id="phone"
-                {...register("phone", {
-                  validate: (value) => {
-                    if (!value) {
-                      return "Last Name is required";
-                    }
-                    if (!/^\d+$/.test(value)) {
-                      return "Only numbers allowed";
-                    }
-                    return true;
-                  },
-                })}
-              />
-              <p>{errors.phone && errors.phone.message}</p>
-            </div>
-
-            <div className="addEmployee-input">
-              <input
-                placeholder="Address"
-                className="form-input"
-                type="text"
-                id="address"
-                {...register("address", {
-                  required: true,
-                  minLength: 2,
-                })}
-              />
-              <p>{errors.address && errors.address.message}</p>
-            </div>
-
-            <div className="addEmployee-input">
-              <input
-                className="form-input"
-                type="file"
-                id="image"
-                onChange={handleImageChange}
-              />
-            </div>
-          </div>
-          <button>Submit</button>
-        </form>
-      </fieldset>
-    </>
+          Submit
+        </button>
+      </form>
+    </div>
   );
 };

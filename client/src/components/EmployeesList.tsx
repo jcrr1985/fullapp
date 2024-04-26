@@ -22,12 +22,10 @@ export const EmployeesList = () => {
   ) as EmployeeContextType;
 
   const fetchEmployees = async () => {
-    console.log("fetchEmployees");
     try {
       const response = await axios.get("http://localhost:3001/employees");
       console.log("response", response);
       const employeesFetched: FormValues[] = response.data;
-      console.log("employeesFetched", employeesFetched);
       setEmployees(employeesFetched);
     } catch (error) {
       console.error("Error fetching employees:", error);
@@ -53,40 +51,41 @@ export const EmployeesList = () => {
   };
 
   return (
-    <div>
+    <div className="container mx-auto p-6">
       <AddEmployee fetchEmployees={fetchEmployees} />
-      <br />
-      <div className="card-grid">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {employees.map((employee) => (
-          <div className="card" key={employee._id}>
+          <div
+            className="bg-white shadow-lg rounded-lg overflow-hidden p-5"
+            key={employee._id}
+          >
             <div
-              className="status-indicator"
-              style={{
-                background: employee.isActive ? "yellowgreen" : "#ff6666",
-              }}
+              className={`h-3 w-3 rounded-full ${
+                employee.isActive ? "bg-green-500" : "bg-red-500"
+              }`}
             ></div>
             <img
-              className="thumbnail"
+              className="thumbnail w-full object-cover object-center"
               src={`http://localhost:3001/uploads/${employee.imageFilename}`}
               alt=""
             />
-            <h4 style={{ marginBottom: "0px" }}>
-              {" "}
-              {employee.firstName} - {employee.lastName} (IT)
+            <h4 className="text-gray-900 font-bold text-2xl my-4">
+              {employee.firstName} {employee.lastName} -
+              {parseDepartment(employee.department)}
             </h4>
-            <div style={{ marginBottom: "15px" }}>
-              <p className="hire-date">Hire Date</p>
-              <p className="hire-date">2021-12-07</p>
+            <div className="flex justify-between items-center text-gray-600">
+              <p>Hire Date</p>
+              <p>{new Date(employee.hireDate).toLocaleDateString("en-CA")}</p>
             </div>
-            <div className="btn-container">
+            <div className="flex justify-between items-center mt-4">
               <button
-                className="view-details-btn btn"
+                className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-700 transition duration-300"
                 onClick={() => handleViewDetails(employee)}
               >
                 View Details
               </button>
               <button
-                className="delete-btn btn"
+                className="bg-red-500 text-white py-2 px-4 rounded hover:bg-red-700 transition duration-300"
                 onClick={() => {
                   deleteEmployee(employee._id).catch((error) => {
                     console.error("Error deleting employee:", error);
@@ -96,10 +95,24 @@ export const EmployeesList = () => {
                 Delete
               </button>
             </div>
-            <div />
           </div>
         ))}
       </div>
     </div>
   );
 };
+
+interface DepartmentData {
+  department: string;
+  date: string;
+}
+
+function parseDepartment(departmentData: string): string {
+  try {
+    const parsed = JSON.parse(departmentData) as DepartmentData;
+    return parsed.department || "Unknown";
+  } catch (error) {
+    console.error("Error parsing department data:", error);
+    return "Unknown";
+  }
+}

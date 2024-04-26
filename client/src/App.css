@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 #root {
   max-width: 1280px;
   margin: 0 auto;
@@ -6,9 +10,7 @@
 }
 
 
-.addEmployee-input {
-  width: fit-content;
-}
+
 
 .table-container {
   max-width: 80%;
@@ -19,20 +21,11 @@
   width: 100%;
 }
 
-form {
-  display: inline-flex;
-}
 
-.form-input{
-  border-radius: 7px;
-  padding: .5rem;
-  background-color: #dce4f1;
-  margin: .5em;
-  border: none;
 
-  }
 
-.card{
+
+.card {
   border-radius: 5px;
   height: min-content;
   background-color: #e3e3ee;
@@ -48,7 +41,7 @@ form {
 
 }
 
-.status-indicator{
+.status-indicator {
   border-radius: 50%;
   margin-left: auto;
   width: 23px;
@@ -58,7 +51,7 @@ form {
   left: 8px;
 }
 
-.hire-date{
+.hire-date {
   margin: 0;
   font-size: 14px;
 }
@@ -69,72 +62,72 @@ form {
   gap: 25px;
 }
 
-.parent-div{
+.parent-div {
   margin-top: 7rem;
 }
 
-.form-wrapper{
+.form-wrapper {
   display: flex;
 }
 
-.view-details-btn{
-  background-color: rgb(173, 211, 228)!important;
+.view-details-btn {
+  background-color: rgb(173, 211, 228) !important;
   background: #dce3ed;
   height: 43px;
   width: 138px;
   font-size: 14px;
 }
 
-.detail-section{
+.detail-section {
   display: flex;
   justify-content: space-between;
   margin: 1rem 0;
   gap: 4rem;
 }
 
-.department-select{
+.department-select {
   padding-top: 12px;
-padding-bottom: 9px;
-padding-left: 23px;
-padding-right: 19px;
+  padding-bottom: 9px;
+  padding-left: 23px;
+  padding-right: 19px;
 }
 
-.update-dept-div{
+.update-dept-div {
   display: flex;
-gap: 16px;
+  gap: 16px;
 }
 
-.medium-img{
+.medium-img {
   width: 250px;
-height: 250px;
-border-radius: 50%;
-object-fit: cover;
+  height: 250px;
+  border-radius: 50%;
+  object-fit: cover;
 }
 
-.btn-container{
+.btn-container {
   display: flex;
-  gap: 5px  ;
+  gap: 5px;
 }
 
-.btn{
+.btn {
   background: #dce3ed;
   height: 43px;
   width: 138px;
   font-size: 14px;
 }
 
-.delete-btn{
-  background-color: #dfa3cb!important;
+.delete-btn {
+  background-color: #dfa3cb !important;
   width: fit-content;
 
 }
 
 
-.department-history-table{
+.department-history-table {
   display: flex;
   justify-content: center;
 }
 
-.left{
+.left {
   text-align: left;
 }
