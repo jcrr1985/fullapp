@@ -6,6 +6,7 @@ const path = require("path");
 const router = express.Router();
 
 router.get("/employees", logger, async (req, res) => {
+  console.log("req");
   try {
     const employees = await Employee.find();
     console.log("employees", employees);
@@ -16,8 +17,9 @@ router.get("/employees", logger, async (req, res) => {
   }
 });
 
-function logger() {
+function logger(req, res, next) {
   console.log("fetching data from database");
+  next();
 }
 
 router.get("/employees/:id", async (req, res) => {

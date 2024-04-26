@@ -18,5 +18,5 @@ app.use("/", employeeRoutes);
 app.use("/", departmentRoutes);
 
 app.use("/uploads", express.static("uploads"));
-const port = 3000;
-app.listen(3000, () => console.log(`Server is running on port ${port}`));
+const port = 3001;
+app.listen(port, () => console.log(`Server is running on port ${port}`));
