@@ -17,9 +17,7 @@ export const EmployeesList = () => {
 
   const [employees, setEmployees] = useState<FormValues[]>([]);
 
-  const { selectedEmployee, chooseEmployee, clearChosenEmployee } = useContext(
-    EmployeeContext
-  ) as EmployeeContextType;
+  const { chooseEmployee } = useContext(EmployeeContext) as EmployeeContextType;
 
   const fetchEmployees = async () => {
     try {
@@ -61,7 +59,7 @@ export const EmployeesList = () => {
         {employees.map((employee) => (
           <div
             style={{ width: "30%" }}
-            className="bg-white shadow-lg rounded-lg overflow-hidden p-5"
+            className="bg-white shadow-lg rounded-lg overflow-hidden p-5 flex flex-col justify-around"
             key={employee._id}
           >
             <div

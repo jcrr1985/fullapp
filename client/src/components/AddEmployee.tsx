@@ -59,7 +59,6 @@ export const AddEmployee = ({ fetchEmployees }: AddEmployeeProps) => {
       );
 
       if (response.ok) {
-        const createdEmployee = await response.json();
         try {
           await fetchEmployees();
         } catch (error) {
