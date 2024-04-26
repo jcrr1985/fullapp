@@ -53,9 +53,10 @@ export const EmployeesList = () => {
   return (
     <div className="container mx-auto p-6">
       <AddEmployee fetchEmployees={fetchEmployees} />
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="flex justify-center flex-wrap gap-6">
         {employees.map((employee) => (
           <div
+            style={{ width: "30%" }}
             className="bg-white shadow-lg rounded-lg overflow-hidden p-5"
             key={employee._id}
           >
