@@ -8,7 +8,7 @@ import { FormValues } from "../interfaces/Iemployees";
 import { AddEmployee } from "./AddEmployee";
 import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
-import { EmployeeContext } from "../contexts/EmployeeContext";
+import { EmployeeContext, apiUrl } from "../contexts/EmployeeContext";
 
 import { EmployeeContextType } from "../interfaces/IemployeeContextType";
 
@@ -21,9 +21,7 @@ export const EmployeesList = () => {
 
   const fetchEmployees = async () => {
     try {
-      const response = await axios.get(
-        "https://full-app-server.onrender.com/employees"
-      );
+      const response = await axios.get(`${apiUrl}/employees`);
       console.log("response", response);
       const employeesFetched: FormValues[] = response.data;
       setEmployees(employeesFetched);
@@ -58,7 +56,13 @@ export const EmployeesList = () => {
       <div className="flex justify-center flex-wrap gap-6">
         {employees.map((employee) => (
           <div
-            style={{ width: "30%" }}
+            style={{
+              width: employees.length > 2 ? "30%" : "45%",
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              justifyContent: "space-between",
+            }}
             className="bg-white shadow-lg rounded-lg overflow-hidden p-5 flex flex-col justify-around"
             key={employee._id}
           >
@@ -77,10 +81,10 @@ export const EmployeesList = () => {
               {parseDepartment(employee.department)}
             </h4>
             <div className="flex justify-between items-center text-gray-600">
-              <p>Hire Date</p>
+              <p>Hire Date:</p>
               <p>{new Date(employee.hireDate).toLocaleDateString("en-CA")}</p>
             </div>
-            <div className="flex justify-between items-center mt-4">
+            <div className="flex justify-between items-center mt-4 gap-1">
               <button
                 className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-700 transition duration-300"
                 onClick={() => handleViewDetails(employee)}

@@ -2,7 +2,7 @@
 /* eslint-disable @typescript-eslint/no-misused-promises */
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import { EmployeeContext } from "../contexts/EmployeeContext";
+import { EmployeeContext, apiUrl } from "../contexts/EmployeeContext";
 import { differenceInCalendarDays, format } from "date-fns";
 import axios from "axios";
 import { DepartmentChangeHistory } from "./DepartmentChangeHistory";
@@ -49,7 +49,7 @@ export const EmployeeDetail = () => {
       if (selectedEmployee) {
         const updatedEmployee = { ...selectedEmployee, [property]: value };
         const response = await axios.put(
-          `https://full-app-server.onrender.com/employees/${selectedEmployee._id}`,
+          `${apiUrl}/employees/${selectedEmployee._id}`,
           updatedEmployee
         );
         if (response.status === 200) {

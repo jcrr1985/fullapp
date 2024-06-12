@@ -5,6 +5,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { FormValues } from "../interfaces/Iemployees";
+import { apiUrl } from "../contexts/EmployeeContext";
 
 export const DepartmentChangeHistory = ({
   selectedEmployee,
@@ -17,7 +18,7 @@ export const DepartmentChangeHistory = ({
     const fetchDepartmentHistory = async () => {
       try {
         const response = await axios.get(
-          `https://full-app-server.onrender.com/employees/${selectedEmployee._id}/department-history`
+          `${apiUrl}/employees/${selectedEmployee._id}/department-history`
         );
         const departmentHistoryData = response.data;
         setDepartmentHistory(departmentHistoryData);

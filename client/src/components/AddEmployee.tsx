@@ -4,6 +4,7 @@
 /* eslint-disable @typescript-eslint/no-misused-promises */
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
+import { apiUrl } from "../contexts/EmployeeContext";
 
 interface AddEmployeeProps {
   fetchEmployees: () => Promise<void>;
@@ -50,13 +51,10 @@ export const AddEmployee = ({ fetchEmployees }: AddEmployeeProps) => {
       formData.append("phone", data.phone);
       formData.append("address", data.address);
 
-      const response = await fetch(
-        "https://full-app-server.onrender.com/employees",
-        {
-          method: "POST",
-          body: formData,
-        }
-      );
+      const response = await fetch(`${apiUrl}/employees/`, {
+        method: "POST",
+        body: formData,
+      });
 
       if (response.ok) {
         try {
